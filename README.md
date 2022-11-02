@@ -1,5 +1,9 @@
 # SpeakedForms
 
+## Problema del estudio
+> Algunos problemas que se presentan al momento de crear formularios, es que hay un gran número de personas que se les complica la creación de los mismos, ya sea al momento de interactuar con el aplicativo para su creación o que no esté habilitado para una persona incapacitada de interactuar de manera física con un ordenador. 
+> Para resolver esto, se desarrollará un aplicativo para formularios que permita la creación y llenado a través de comandos de voz fáciles y automáticos. 
+
 ### Integrantes:
 - Olivieri Romero Stefano
 - Yagi Vasquez Gladys Alesandra
