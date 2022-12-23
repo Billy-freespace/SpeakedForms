@@ -1,0 +1,2 @@
+#Comando para actualizar css
+sass --watch .\src\estilos\sass\App.scss .\src\estilos\css\App.css
