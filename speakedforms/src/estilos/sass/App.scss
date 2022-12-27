@@ -9,7 +9,7 @@
 
 $purple: rgb(16,0,15);
 $light-purple: rgba(68, 47, 67, 0.726);
-$Dlight-purple: rgba(128, 117, 127, 0.726);
+$Dlight-purple: rgba(244, 193, 253, 0.726);
 
 .topbar{
     background-color: white;
@@ -22,7 +22,20 @@ $Dlight-purple: rgba(128, 117, 127, 0.726);
         padding-right: 1rem;
         align-items: center;
         li{
+            padding-right: 0.5rem;
             color: $purple;
+            .Encendido{
+                width: 60px;
+                background-color: rgb(36, 173, 36);
+                border-radius: 100px;
+                color: white;
+            }
+            .Apagado{
+                width: 60px;
+                background-color: rgb(218, 28, 28);
+                border-radius: 100px;
+                color: white;
+            }
         }
     }
     .btn{
@@ -75,6 +88,56 @@ $Dlight-purple: rgba(128, 117, 127, 0.726);
             &.logout{
                 position: absolute;
                 bottom: 0;
+            }
+        }
+    }
+}
+
+.template{
+    background-color: $Dlight-purple;
+    padding-bottom: 10px;
+    .template-top{
+        margin-left: 30px;
+        margin-right: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .template-left{
+            span{
+                font-size: 16px;
+                color: $purple;
+            }
+        }
+    }
+    .template-body{
+        margin-left: 20px;
+        margin-right: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        .card{
+            border: none;
+            margin-left: 40px;
+            margin-top: 15px;
+            background-color: transparent;
+            .card-image{
+                box-sizing: border-box;
+                height: 110px;
+                width: 110px;
+                cursor: pointer;
+                border-radius: 2px;
+                border: 0.2px solid $light-purple;
+                &:hover{
+                    border: 1px solid $purple;
+                }
+            }
+            .card-title{
+                font-size: 12px;
+                margin-top: 2px;
+                color: black;
+                font-weight: 500;
             }
         }
     }
