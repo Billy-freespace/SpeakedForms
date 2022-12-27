@@ -1,4 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 
-h{
-    color: red;
+.flex{
+    display: flex;
+}
+
+$purple: rgb(16,0,15);
+$light-purple: rgba(68, 47, 67, 0.726);
+$Dlight-purple: rgba(128, 117, 127, 0.726);
+
+.topbar{
+    background-color: white;
+    padding-left: 1rem;
+    border-bottom: 1px solid $light-purple;
+    display: flex;
+    ul{
+        list-style: none;
+        display: flex;
+        padding-right: 1rem;
+        align-items: center;
+        li{
+            color: $purple;
+        }
+    }
+    .btn{
+        color: white;
+        background-color: $light-purple;
+    }
+}
+
+.homeBody{
+    display: flex;
+}
+
+.logo{
+    height: 70px;
+    margin-left: 1rem;
+    margin-bottom: 5vh;
+}
+
+
+.sidebar{
+    width: 14rem;
+    height: 100vh;
+    border-right: 1px solid $purple;
+    background-color: $purple;
+    .profile-bar{
+        .profile-picture{
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            display: block;
+        }
+        p{
+            text-align: center;
+            color: white;
+        }
+    }
+    ul{
+        list-style: none;
+        padding: 1rem 1rem;
+        li{
+            margin-bottom: 1rem;
+            a{
+                text-decoration: none;
+                &.active{
+                    background-color: $light-purple;
+                }
+            }
+            &.logout{
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+}
+
+.content{
+    .top-content{
+        border-bottom: 1px solid $Dlight-purple;
+        margin: 1rem;
+        .card{
+            width: 5rem;
+            height: 5rem;
+            .card-title{
+                margin: auto;
+                width: 50%;
+            }
+        }
+    }
+    .down-content{
+        margin: 1rem;
+        .card{
+            width: 15rem;
+        }
+    }
 }

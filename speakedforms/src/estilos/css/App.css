@@ -1,5 +1,95 @@
-h {
-  color: red;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.topbar {
+  background-color: white;
+  padding-left: 1rem;
+  border-bottom: 1px solid rgba(68, 47, 67, 0.726);
+  display: flex;
+}
+.topbar ul {
+  list-style: none;
+  display: flex;
+  padding-right: 1rem;
+  align-items: center;
+}
+.topbar ul li {
+  color: rgb(16, 0, 15);
+}
+.topbar .btn {
+  color: white;
+  background-color: rgba(68, 47, 67, 0.726);
+}
+
+.homeBody {
+  display: flex;
+}
+
+.logo {
+  height: 70px;
+  margin-left: 1rem;
+  margin-bottom: 5vh;
+}
+
+.sidebar {
+  width: 14rem;
+  height: 100vh;
+  border-right: 1px solid rgb(16, 0, 15);
+  background-color: rgb(16, 0, 15);
+}
+.sidebar .profile-bar .profile-picture {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  display: block;
+}
+.sidebar .profile-bar p {
+  text-align: center;
+  color: white;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 1rem 1rem;
+}
+.sidebar ul li {
+  margin-bottom: 1rem;
+}
+.sidebar ul li a {
+  text-decoration: none;
+}
+.sidebar ul li a.active {
+  background-color: rgba(68, 47, 67, 0.726);
+}
+.sidebar ul li.logout {
+  position: absolute;
+  bottom: 0;
+}
+
+.content .top-content {
+  border-bottom: 1px solid rgba(128, 117, 127, 0.726);
+  margin: 1rem;
+}
+.content .top-content .card {
+  width: 5rem;
+  height: 5rem;
+}
+.content .top-content .card .card-title {
+  margin: auto;
+  width: 50%;
+}
+.content .down-content {
+  margin: 1rem;
+}
+.content .down-content .card {
+  width: 15rem;
 }
 
 /*# sourceMappingURL=App.css.map */
