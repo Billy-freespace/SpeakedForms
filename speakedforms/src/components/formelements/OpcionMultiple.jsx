@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   Accordion,
   AccordionSummary,
+  Button,
   FormControl,
   RadioGroup,
   Radio,
@@ -10,25 +11,38 @@ import {
   Typography,
 } from "@mui/material";
 
-function OpcionMultiple() {
-  const [preguntas, setPreguntas] = useState([
-    {
-      preguntaText: "Capital de Perú:",
-      preguntaTipo: "Radio",
-      opciones: [
-        { optionText: "Paris" },
-        { optionText: "Lima" },
-        { optionText: "Washington DC" },
-        { optionText: "La Paz" },
-      ],
-      open: true,
-      required: false,
-    },
-  ]);
+const keyWords = ["comando", "crear", "editar", "pregunta", "opción"];
+
+function OpcionMultiple({ transc }) {
+  const [preguntas, setPreguntas] = useState([]);
+
+  // pregunta object model:
+  // {
+  //   preguntaText: "Capital de Perú:",
+  //   preguntaTipo: "Radio",
+  //   opciones: [
+  //     { optionText: "Paris" },
+  //     { optionText: "Lima" },
+  //     { optionText: "Washington DC" },
+  //     { optionText: "La Paz" },
+  //   ],
+  //   open: true,
+  //   required: false,
+  // },
+
+  const handleNuevaPregunta = (preg) => {
+    setPreguntas([...preguntas, preg]);
+  };
+
+  const handleNuevaOpcion = (preg) => {
+    preg.opciones.push({ optionText: "" });
+    setPreguntas([...preguntas]);
+  };
 
   function preguntasUI() {
     return (
       <>
+        <p>{transc}</p>
         {preguntas.map((preg, i) => (
           <div key={[i]}>
             <Accordion
@@ -44,16 +58,17 @@ function OpcionMultiple() {
                 {preguntas[i].open ? (
                   <div className="guardar_preguntas">
                     <Typography>
-                      {i + 1}. {preguntas[i].preguntaText}
+                      <input type="text" value={`${i + 1}.`} />
+                      {/* {i + 1}. {preguntas[i].preguntaText} */}
                     </Typography>
                     <FormControl>
-                      <RadioGroup defaultValue={""}>
+                      <RadioGroup defaultValue={undefined}>
                         {preg.opciones.map((op, j) => (
                           <div key={[j]}>
                             <div>
                               <FormControlLabel
                                 // disabled
-                                value={op.optionText}
+                                value={j}
                                 control={<Radio />}
                                 label={<Typography>{op.optionText}</Typography>}
                               />
@@ -67,9 +82,29 @@ function OpcionMultiple() {
                   ""
                 )}
               </AccordionSummary>
+              <Button
+                variant="outlined"
+                onClick={() => handleNuevaOpcion(preg)}
+              >
+                Agregar Opción
+              </Button>
             </Accordion>
           </div>
         ))}
+        <Button
+          variant="outlined"
+          onClick={() => {
+            handleNuevaPregunta({
+              preguntaText: "",
+              preguntaTipo: "Radio",
+              opciones: [],
+              open: true,
+              required: false,
+            });
+          }}
+        >
+          Agregar Pregunta
+        </Button>
       </>
     );
   }

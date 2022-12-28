@@ -3,15 +3,14 @@ import TabsForm from "../../components/crear/TabsForm";
 import TopForm from "../../components/crear/TopForm";
 import OpcionMultiple from "../../components/formelements/OpcionMultiple";
 
-const Crear= () => {
-    return(
-        <div>
-            <TopForm/>
-            <TabsForm/>
-            <OpcionMultiple/>
-        </div>
-
-    )
-}
+const Crear = ({ transc }) => {
+  return (
+    <div>
+      <TopForm />
+      <TabsForm />
+      <OpcionMultiple transc={transc} />
+    </div>
+  );
+};
 
 export default Crear;
