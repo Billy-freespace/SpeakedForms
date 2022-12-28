@@ -30,7 +30,7 @@ const Topbar = () => {
         <div className="topbar">
            <div className="input-group m-4">
                 <div id="search-autocomplete" className="form-outline">
-                    <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
+                    <input type="search" id="form1" className="form-control" placeholder="Buscar"/>
                 </div>
                 <button type="button" className="btn">
                     <FaSearch/>

@@ -1,15 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/sidebar/Sidebar";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
 import Crear from "./pages/crear/Crear";
+import Home from "./pages/home/Home";
+import {BrowserRouter as Router , Route, Routes} from "react-router-dom";
+import Topbar from "./components/topbar/Topbar";
+import OpcionMultiple from "./components/formelements/OpcionMultiple";
+
 
 function App() {
 
     return(
         <div className="App">
-            <Home/>
+           <Router>
+            <Topbar/>
+            <Routes>
+                <Route path="/" element={<Home/>}>
+                </Route>
+                <Route path="/crear/:id" element={<Crear/>}>
+                </Route>
+            </Routes>
+            </Router>
+            {/* <Crear/> */}
         </div>
         // <Router>
         //     <div className="homeBody">

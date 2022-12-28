@@ -1,6 +1,5 @@
 import React from "react";
 import fondo from "../../image/FondoEjemplo.jpg";
-import Topbar from "../../components/topbar/Topbar";
 import {FaFileAlt} from "react-icons/fa";
 import Template from "../../components/templates/Template";
 
@@ -8,7 +7,6 @@ const Home = () => {
 
     return(
         <div>
-            <Topbar/>
             <div className="content">
             <Template/>
                 <div className="down-content">

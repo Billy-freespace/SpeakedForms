@@ -1,8 +1,18 @@
 import React from "react";
 import templateImage from "../../image/TemplateFormulario.jpg";
 import nuevoImage from "../../image/NuevoFormulario.jpg";
+import uuid from "react-uuid";
+import { useNavigate } from "react-router-dom";
 
 const Template = () =>{
+
+    let navigate = useNavigate();
+
+    const CreateForm = () =>{
+        const id = uuid();
+        navigate('/crear/'+id);
+    }
+
     return(
         <div className="template">
             <div className="template-top">
@@ -11,7 +21,7 @@ const Template = () =>{
                 </div>
             </div>
             <div className="template-body">
-                <div className="card">
+                <div className="card" onClick={CreateForm}>
                     <img className="card-image" src={nuevoImage} alt="imagen de plantilla formulario"/>
                     <p className="card-title">En blanco</p>
                 </div>

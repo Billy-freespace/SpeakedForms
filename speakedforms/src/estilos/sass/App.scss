@@ -163,3 +163,27 @@ $Dlight-purple: rgba(244, 193, 253, 0.726);
         }
     }
 }
+
+.topForm{
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    background-color: $Dlight-purple;
+    .form-title{
+        width: 100%;
+        text-align: center;
+        .form-name{
+            background-color: white;
+            border: none;
+            outline: none;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 24px;
+            margin-left: 15px;
+            color: $purple;
+            width: 120px;
+        }
+    }
+}
