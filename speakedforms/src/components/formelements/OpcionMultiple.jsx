@@ -4,10 +4,12 @@ import {
   Accordion,
   AccordionSummary,
   Button,
+  Box,
   FormControl,
   RadioGroup,
   Radio,
   FormControlLabel,
+  TextField,
   Typography,
 } from "@mui/material";
 
@@ -39,10 +41,32 @@ function OpcionMultiple({ transc }) {
     setPreguntas([...preguntas]);
   };
 
-  function preguntasUI() {
+  const handlePreguntaText = (preg, text) => {
+    preg.preguntaText = text;
+    setPreguntas([...preguntas]);
+  };
+
+  const handleOptionText = (op, text) => {
+    op.optionText = text;
+    setPreguntas([...preguntas]);
+  };
+
+  const handleOnChangeTranscript = (transc) => {
+    // const newTransc = transc;
+    // const splittedTransc = newTransc.split(" ");
+    // const lastWord = splittedTransc[splittedTransc.length - 1];
+    // console.log(lastWord);
+  };
+
+  function preguntasUI(transc) {
     return (
       <>
-        <p>{transc}</p>
+        <input
+          type="hidden"
+          value={transc}
+          onChange={() => handleOnChangeTranscript(transc)}
+        />
+        {transc}
         {preguntas.map((preg, i) => (
           <div key={[i]}>
             <Accordion
@@ -58,8 +82,33 @@ function OpcionMultiple({ transc }) {
                 {preguntas[i].open ? (
                   <div className="guardar_preguntas">
                     <Typography>
-                      <input type="text" value={`${i + 1}.`} />
-                      {/* {i + 1}. {preguntas[i].preguntaText} */}
+                      <Box
+                        component="form"
+                        sx={{
+                          "& .MuiTextField-root": {
+                            ml: 5,
+                            mb: 4,
+                            width: "140ch",
+                          },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <div>
+                          <TextField
+                            id="standard-multiline-flexible"
+                            label={i + 1 + "."}
+                            multiline
+                            autoFocus
+                            maxRows={8}
+                            variant="standard"
+                            value={preguntas[i].preguntaText}
+                            onChange={(e) =>
+                              handlePreguntaText(preg, e.target.value)
+                            }
+                          />
+                        </div>
+                      </Box>
                     </Typography>
                     <FormControl>
                       <RadioGroup defaultValue={undefined}>
@@ -70,7 +119,37 @@ function OpcionMultiple({ transc }) {
                                 // disabled
                                 value={j}
                                 control={<Radio />}
-                                label={<Typography>{op.optionText}</Typography>}
+                                label={
+                                  <Typography>
+                                    <Box
+                                      component="form"
+                                      sx={{
+                                        "& .MuiTextField-root": {
+                                          ml: 5,
+                                          mb: 3,
+                                          width: "120ch",
+                                        },
+                                      }}
+                                      noValidate
+                                      autoComplete="off"
+                                    >
+                                      <div>
+                                        <TextField
+                                          id="standard-multiline-flexible"
+                                          label={j + 1 + "."}
+                                          multiline
+                                          autoFocus
+                                          maxRows={8}
+                                          variant="standard"
+                                          value={op.optionText}
+                                          onChange={(e) =>
+                                            handleOptionText(op, e.target.value)
+                                          }
+                                        />
+                                      </div>
+                                    </Box>
+                                  </Typography>
+                                }
                               />
                             </div>
                           </div>
@@ -109,7 +188,7 @@ function OpcionMultiple({ transc }) {
     );
   }
 
-  return <div>{preguntasUI()}</div>;
+  return <div>{preguntasUI(transc)}</div>;
 }
 
 export default OpcionMultiple;
