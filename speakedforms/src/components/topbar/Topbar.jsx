@@ -5,30 +5,10 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 const Topbar = (props) => {
-  const {
-    transcript,
-    listening,
-    resetTransript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
-  props.func(transcript);
-
-  if (!browserSupportsSpeechRecognition) {
-    return <span>El navegador no soporta</span>;
-  }
-
-  const Encender = (e) => {
-    SpeechRecognition.startListening({ continuous: true });
-  };
-
-  const Apagar = () => {
-    SpeechRecognition.stopListening();
-  };
 
   return (
     <div className="topbar">
-      <div className="input-group m-4">
+      <div className="input-group m-3">
         <div id="search-autocomplete" className="form-outline">
           <input
             type="search"
@@ -41,28 +21,6 @@ const Topbar = (props) => {
           <FaSearch />
         </button>
       </div>
-      <ul className="m-2">
-        <li>
-          <p>Microfono: {listening ? "Encendido" : "Apagado"}</p>
-        </li>
-        <li>
-          <button
-            className={listening ? "invisible" : "Encendido"}
-            onClick={Encender}
-          >
-            On
-          </button>
-          <button
-            className={listening ? "Apagado" : "invisible"}
-            onClick={Apagar}
-          >
-            Apagar
-          </button>
-        </li>
-        <li>
-          <FaRegQuestionCircle size={25} />
-        </li>
-      </ul>
     </div>
   );
 };

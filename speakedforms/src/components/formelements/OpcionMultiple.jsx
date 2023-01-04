@@ -12,25 +12,30 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
-const keyWords = ["comando", "crear", "editar", "pregunta", "opción"];
+import SpeechRecognition,{ useSpeechRecognition } from "react-speech-recognition";
+import { AudioOutlined} from '@ant-design/icons';
 
 function OpcionMultiple({ transc }) {
   const [preguntas, setPreguntas] = useState([]);
+  const [message, setMessage] = useState('');
 
-  // pregunta object model:
-  // {
-  //   preguntaText: "Capital de Perú:",
-  //   preguntaTipo: "Radio",
-  //   opciones: [
-  //     { optionText: "Paris" },
-  //     { optionText: "Lima" },
-  //     { optionText: "Washington DC" },
-  //     { optionText: "La Paz" },
-  //   ],
-  //   open: true,
-  //   required: false,
-  // },
+  const commands = [
+    {
+      command: 'Agregar pregunta',
+      callback: () => {document.getElementById('btnAgregarPregunta').click()}
+    },
+    {
+      command: 'Agregar opción',
+      callback: () => {document.getElementById('btnAgregarOpcion').click()}
+    }
+  ]
+
+  const AudioStyle = {
+    color: '#000000',
+    fontSize: '30px',
+    cursor: 'pointer',
+  }
+
 
   const handleNuevaPregunta = (preg) => {
     setPreguntas([...preguntas, preg]);
@@ -52,21 +57,40 @@ function OpcionMultiple({ transc }) {
   };
 
   const handleOnChangeTranscript = (transc) => {
-    // const newTransc = transc;
-    // const splittedTransc = newTransc.split(" ");
-    // const lastWord = splittedTransc[splittedTransc.length - 1];
-    // console.log(lastWord);
   };
 
+  const {transcript,
+    listening,
+    browserSupportsSpeechRecognition} = useSpeechRecognition({commands});
+
+  if (!browserSupportsSpeechRecognition) {
+      return <span>Browser doesn't support speech recognition.</span>;
+  }
+
+
+
+  const start = () =>{
+    console.log({listening})
+    if({listening}){
+      SpeechRecognition.startListening();
+      console.log({listening})
+    }
+    else{
+      SpeechRecognition.stopListening();
+    }
+  }
+
   function preguntasUI(transc) {
+
     return (
       <>
+        
+        <p><AudioOutlined style={AudioStyle} onClick={start}/> Microfono: {listening ? 'Encendido' : 'Apagado'}</p>
         <input
           type="hidden"
           value={transc}
           onChange={() => handleOnChangeTranscript(transc)}
         />
-        {transc}
         {preguntas.map((preg, i) => (
           <div key={[i]}>
             <Accordion
@@ -162,6 +186,7 @@ function OpcionMultiple({ transc }) {
                 )}
               </AccordionSummary>
               <Button
+                id="btnAgregarOpcion"
                 variant="outlined"
                 onClick={() => handleNuevaOpcion(preg)}
               >
@@ -171,6 +196,7 @@ function OpcionMultiple({ transc }) {
           </div>
         ))}
         <Button
+          id="btnAgregarPregunta"
           variant="outlined"
           onClick={() => {
             handleNuevaPregunta({
@@ -188,7 +214,7 @@ function OpcionMultiple({ transc }) {
     );
   }
 
-  return <div>{preguntasUI(transc)}</div>;
+  return <div className="contenido">{preguntasUI(transc)}</div>;
 }
 
 export default OpcionMultiple;

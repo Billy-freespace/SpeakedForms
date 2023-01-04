@@ -2,11 +2,15 @@ import React from "react";
 import fondo from "../../image/FondoEjemplo.jpg";
 import {FaFileAlt} from "react-icons/fa";
 import Template from "../../components/templates/Template";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 const Home = () => {
 
     return(
         <div>
+            <Sidebar/>
+            <Topbar/>
             <div className="content">
             <Template/>
                 <div className="down-content">
@@ -29,6 +33,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     )
