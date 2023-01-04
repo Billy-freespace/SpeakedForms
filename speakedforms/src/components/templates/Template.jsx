@@ -4,6 +4,7 @@ import EncuestaTemplate from "../../image/Encuesta.jpg";
 import nuevoImage from "../../image/NuevoFormulario.jpg";
 import uuid from "react-uuid";
 import { useNavigate } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const Template = () =>{
 
@@ -13,6 +14,8 @@ const Template = () =>{
         const id = uuid();
         navigate('/crear/'+id);
     }
+
+
 
     return(
         <div className="template">

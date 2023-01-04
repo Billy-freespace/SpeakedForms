@@ -1,8 +1,5 @@
 import React from "react";
-import { FaSearch, FaRegQuestionCircle } from "react-icons/fa";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+import { FaSearch } from "react-icons/fa";
 
 const Topbar = (props) => {
 

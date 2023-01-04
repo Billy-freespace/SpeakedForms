@@ -3,8 +3,7 @@ import Login from "./pages/login/Login";
 import Crear from "./pages/crear/Crear";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Topbar from "./components/topbar/Topbar";
-import OpcionMultiple from "./components/formelements/OpcionMultiple";
+
 
 function App() {
   const [transc, setTransc] = useState("");

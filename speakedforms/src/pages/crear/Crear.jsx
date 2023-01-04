@@ -10,8 +10,6 @@ const Crear = ({ transc }) => {
     <div>
       <Sidebar/>
       <Topbar/>
-      <TopForm />
-      <TabsForm />
       <OpcionMultiple/>
     </div>
   );

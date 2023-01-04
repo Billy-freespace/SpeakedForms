@@ -12,12 +12,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import {FaFileAlt} from "react-icons/fa";
 import SpeechRecognition,{ useSpeechRecognition } from "react-speech-recognition";
 import { AudioOutlined} from '@ant-design/icons';
+import axios from 'axios';
+import { useParams } from "react-router";
 
 function OpcionMultiple({ transc }) {
+  const {id} = useParams();
   const [preguntas, setPreguntas] = useState([]);
-  const [message, setMessage] = useState('');
+  const [documentName, setDocName] = useState("Untitled");
 
   const commands = [
     {
@@ -101,12 +105,25 @@ function OpcionMultiple({ transc }) {
       }
   }
 
+  const commitToDB = () =>{
+    axios.post(`http://localhost:9000/add_preguntas/${id}`,{
+      "document_name": documentName,
+      "preguntas": preguntas,
+    })
+    
+  }
+
 
   function preguntasUI(transc) {
 
     return (
       <>
-        
+        <div className="topForm">
+            <div className="form-title">
+                <FaFileAlt size={20}/>
+                <input type="text" placeholder="Untitled" className="form-name" onChange={(e) => {setDocName(e.target.value)}}/>
+            </div>
+        </div>
         <p><AudioOutlined style={AudioStyle} onClick={changeListening}/> Microfono: {listening ? 'Encendido' : 'Apagado'}</p>
         <input
           type="hidden"
@@ -253,7 +270,9 @@ function OpcionMultiple({ transc }) {
     <div className="contenido">
         {preguntasUI(transc)}
         <Button
-          variant="outlined">
+          variant="outlined"
+          color="primary"
+          onClick={commitToDB}>
           Guardar
         </Button>
     </div>);

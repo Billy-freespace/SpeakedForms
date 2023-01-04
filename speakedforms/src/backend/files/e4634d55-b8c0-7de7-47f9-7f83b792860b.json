@@ -1,0 +1,1 @@
+{"document_name":"Hola","preguntas":[{"preguntaText":"¿Capital de Perú?","preguntaTipo":"Radio","respuesta":false,"respuestaKey":"Lima","puntos":0,"opciones":[{"optionText":"Washington DC"},{"optionText":"Lima"}],"open":true,"required":false}]}
