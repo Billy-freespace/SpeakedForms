@@ -187,7 +187,7 @@ $Dlight-purple: rgba(244, 193, 253, 0.726);
             line-height: 24px;
             margin-left: 15px;
             color: $purple;
-            width: 120px;
+            width:200px;
         }
     }
 }
@@ -230,7 +230,12 @@ label {
 }
 
 .contenido{
+    padding: 30px 25px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
+
+.colorG{
+    color:green;
 }

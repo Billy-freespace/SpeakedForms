@@ -25,12 +25,17 @@ function OpcionMultiple({ transc }) {
       callback: () => {document.getElementById('btnAgregarPregunta').click()}
     },
     {
-      command: 'Agregar opción',
-      callback: () => {document.getElementById('btnAgregarOpcion').click()}
+      command: 'Agregar opción a pregunta *',
+      callback: (numberQuestion) => {document.getElementById(`btnAgregarOpcion${numberQuestion}`).click()}
+    },
+    {
+      command: "Ir al inicio",
+      callback: () => {window.scroll(0,0)}
     }
   ]
 
   const AudioStyle = {
+    padding: "5px",
     color: '#000000',
     fontSize: '30px',
     cursor: 'pointer',
@@ -69,23 +74,21 @@ function OpcionMultiple({ transc }) {
 
 
 
-  const start = () =>{
-    console.log({listening})
-    if({listening}){
-      SpeechRecognition.startListening();
-      console.log({listening})
-    }
-    else{
-      SpeechRecognition.stopListening();
-    }
+  const changeListening = () =>{
+      if(listening){
+        SpeechRecognition.stopListening();
+      }else{
+        SpeechRecognition.startListening({continuous: true});
+      }
   }
+
 
   function preguntasUI(transc) {
 
     return (
       <>
         
-        <p><AudioOutlined style={AudioStyle} onClick={start}/> Microfono: {listening ? 'Encendido' : 'Apagado'}</p>
+        <p><AudioOutlined style={AudioStyle} onClick={changeListening}/> Microfono: {listening ? 'Encendido' : 'Apagado'}</p>
         <input
           type="hidden"
           value={transc}
@@ -94,6 +97,7 @@ function OpcionMultiple({ transc }) {
         {preguntas.map((preg, i) => (
           <div key={[i]}>
             <Accordion
+              style={{margin: "10px"}}
               expanded={preguntas[i].open}
               className={preguntas[i].open ? "add border" : ""}
             >
@@ -101,7 +105,7 @@ function OpcionMultiple({ transc }) {
                 aria-controls="panel1a-content"
                 id="panel1a-content"
                 elevation={1}
-                style={{ width: "100%" }}
+                style={{ width: "95%" }}
               >
                 {preguntas[i].open ? (
                   <div className="guardar_preguntas">
@@ -112,7 +116,7 @@ function OpcionMultiple({ transc }) {
                           "& .MuiTextField-root": {
                             ml: 5,
                             mb: 4,
-                            width: "140ch",
+                            width: "90ch",
                           },
                         }}
                         noValidate
@@ -124,7 +128,7 @@ function OpcionMultiple({ transc }) {
                             label={i + 1 + "."}
                             multiline
                             autoFocus
-                            maxRows={8}
+                            maxRows={5}
                             variant="standard"
                             value={preguntas[i].preguntaText}
                             onChange={(e) =>
@@ -151,7 +155,7 @@ function OpcionMultiple({ transc }) {
                                         "& .MuiTextField-root": {
                                           ml: 5,
                                           mb: 3,
-                                          width: "120ch",
+                                          width: "70ch",
                                         },
                                       }}
                                       noValidate
@@ -186,9 +190,10 @@ function OpcionMultiple({ transc }) {
                 )}
               </AccordionSummary>
               <Button
-                id="btnAgregarOpcion"
+                id={`btnAgregarOpcion${i+1}`}
                 variant="outlined"
                 onClick={() => handleNuevaOpcion(preg)}
+                hidden
               >
                 Agregar Opción
               </Button>
@@ -207,6 +212,7 @@ function OpcionMultiple({ transc }) {
               required: false,
             });
           }}
+          hidden
         >
           Agregar Pregunta
         </Button>
@@ -214,7 +220,11 @@ function OpcionMultiple({ transc }) {
     );
   }
 
-  return <div className="contenido">{preguntasUI(transc)}</div>;
+  return (  
+    <div className="contenido">
+        {preguntasUI(transc)}
+        <button>Guardar</button>
+    </div>);
 }
 
 export default OpcionMultiple;

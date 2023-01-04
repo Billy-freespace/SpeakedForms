@@ -179,7 +179,7 @@
   line-height: 24px;
   margin-left: 15px;
   color: rgb(16, 0, 15);
-  width: 120px;
+  width: 200px;
 }
 
 .Auth-form-container {
@@ -220,9 +220,14 @@ label {
 }
 
 .contenido {
+  padding: 30px 25px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+.colorG {
+  color: green;
 }
 
 /*# sourceMappingURL=App.css.map */
