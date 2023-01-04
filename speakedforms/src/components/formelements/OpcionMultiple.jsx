@@ -61,6 +61,25 @@ function OpcionMultiple({ transc }) {
     setPreguntas([...preguntas]);
   };
 
+  const setRespuestaOption = (preg,qno) =>{
+    var ps = [...preguntas];
+    ps[qno].respuestaKey = preg;
+    setPreguntas(ps);
+  }
+
+
+  const doneRespuesta = (i) =>{
+    var aoq = [...preguntas];
+    aoq[i].respuesta = !aoq[i].respuesta;
+    setPreguntas(aoq);
+  }
+
+  const addRespuesta = (i) =>{
+    var aoq = [...preguntas];
+    aoq[i].respuesta = !aoq[i].respuesta;
+    setPreguntas(aoq);
+  }
+
   const handleOnChangeTranscript = (transc) => {
   };
 
@@ -155,7 +174,7 @@ function OpcionMultiple({ transc }) {
                                         "& .MuiTextField-root": {
                                           ml: 5,
                                           mb: 3,
-                                          width: "70ch",
+                                          width: "60ch",
                                         },
                                       }}
                                       noValidate
@@ -179,6 +198,9 @@ function OpcionMultiple({ transc }) {
                                   </Typography>
                                 }
                               />
+                              <Button onClick={() => {setRespuestaOption(preg.opciones[j].optionText, i)}}>
+                                Seleccionar como respuesta
+                              </Button>
                             </div>
                           </div>
                         ))}
@@ -197,6 +219,9 @@ function OpcionMultiple({ transc }) {
               >
                 Agregar Opción
               </Button>
+              <Button onClick={() => {addRespuesta(i)}}>
+                Agregar Respuesta
+              </Button>
             </Accordion>
           </div>
         ))}
@@ -207,6 +232,9 @@ function OpcionMultiple({ transc }) {
             handleNuevaPregunta({
               preguntaText: "",
               preguntaTipo: "Radio",
+              respuesta: false,
+              respuestaKey: "",
+              puntos: 0,
               opciones: [],
               open: true,
               required: false,
@@ -216,6 +244,7 @@ function OpcionMultiple({ transc }) {
         >
           Agregar Pregunta
         </Button>
+
       </>
     );
   }
@@ -223,7 +252,10 @@ function OpcionMultiple({ transc }) {
   return (  
     <div className="contenido">
         {preguntasUI(transc)}
-        <button>Guardar</button>
+        <Button
+          variant="outlined">
+          Guardar
+        </Button>
     </div>);
 }
 
